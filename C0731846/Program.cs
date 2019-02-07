@@ -1,94 +1,150 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _2019WCSD3354WEEK05
+namespace week05
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var a = new TestQuestion2();
-            a.PlayingWithForLoops();
+            // var a = new testquestion();
+            // a.playingwithforloops();
+            birthday_party peter = new birthday_party();
+            peter.setupPartyList();
+            peter.reverseprintPartyList();
+            Console.WriteLine(peter.printPartyList());
+            Console.WriteLine(peter.reverseprintPartyList());
+
         }
     }
-
-    class TestQuestion2
+    /* class testquestion
     {
-        public int myFavoriteVariable = 0;
-
-        public void PlayingWithForLoops()
-        {
-            // write a For Loop to Add 10 Numbers
-            for (; MyMethod();)
-            {
-                if (myFavoriteVariable > 10)
-                {
-                    Console.WriteLine("i am so out of here!");
-                    break;
-                }
-                Console.WriteLine("oh no I have to go through this stupid loop again...");
-            }
-        }
-        public bool MyMethod()
-        {
-            myFavoriteVariable++;
-            return true;
-        }
+    public int myfavvariable = 0;
+    public void playingwithforloops()
+    {
+    for (; mymethod();)
+    {
+    if (myfavvariable > 10)
+    {
+    Console.WriteLine("I am outof the for loop");
+    break;
     }
-    class DOG
+    Console.WriteLine("oh no ihave to go through this stupid loop again");
+    }
+    }
+    public bool mymethod()
     {
-        public DOG(string name, string bread, DOG next, DOG prev)
+    myfavvariable++;
+    return true;
+    }
+    }*/
+    class dog
+    {
+        public dog(string name, string breed)
         {
             dog_name = name;
-            dog_bread = bread;
-           
+            dog_breed = breed;
         }
+
+
+
         public string dog_name;
-        public string dog_bread;
-            public DOG next_dog;
-            public DOG previous_dog;
-          
+        public string dog_breed;
+        public dog next_dog;
+        public dog prev_dog;
 
     }
-    class birthday_party {
-        public DOG peanut;
-        public DOG fifi;
-        public DOG clarence;
-        public DOG ruy;
+    class birthday_party
+    {
+        public dog peanut;
+        public dog fifi;
+        public dog clarence;
+        public dog gizelle;
+        public dog lulu;
+        public dog roy;
 
-        public DOG head;
-        public DOG tail;
-        public DOG temporary;
-        public void pea()
-        {
-            peanut = new DOG 
-("peanut ", "bichon");
-            fifi = new DOG("fifi", "poodle");
-            clarence = new DOG("clearenc", "gernam sheppard");
-            ruy = new DOG("ruy", "bengle");
 
-            peanut.previous_dog = null;
-            peanut.next_dog = fifi;
-            fifi.previous_dog = peanut;
-            fifi.next_dog = clarence;
-            clarence.previous_dog = fifi;
-            clarence.next_dog = roy;
-            ruy.previous_dog = clarence;
-            ruy.next_dog = null;
-            head = peanut;
-            tail = ruy;
-        }
+        public dog head;
+        public dog tail;
+        public dog temporary;
+
+
 
         public void setupPartyList()
         {
+            peanut = new dog("peanut", "bichon");
+            fifi = new dog("fifi", "poodle");
+            clarence = new dog("clarence", "german");
+            gizelle = new dog("gizelle", "buorder collie");
+            lulu = new dog("lulu", "shitzu");
+            roy = new dog("roy", "beagle");
+
+
+
+            peanut.prev_dog = null;
+            peanut.next_dog = fifi;
+
+            fifi.prev_dog = peanut;
+            fifi.next_dog = clarence;
+
+            clarence.prev_dog = fifi;
+            clarence.next_dog = gizelle;
+
+
+            gizelle.prev_dog = clarence;
+            gizelle.next_dog = lulu;
+
+
+            lulu.prev_dog = gizelle;
+            lulu.next_dog = roy;
+
+            roy.prev_dog = lulu;
+            roy.next_dog = null;
+            head = peanut;
+            tail = roy;
+
+
 
         }
-            
+        public string printPartyList()
+        {
+            string inviteList = "*--";
+            temporary = head;
+
+            while (temporary.next_dog != null)
+            {
 
 
+                inviteList += temporary.dog_name + " * --- * ";
+
+
+                temporary = temporary.next_dog;
+            }
+            inviteList += temporary.dog_name + " * --- * ";
+            return inviteList;
+
+        }
+        public string reverseprintPartyList()
+        {
+            string inviteList = "*--";
+            temporary = tail;
+
+            while (temporary.prev_dog != null)
+            {
+
+
+                inviteList += temporary.dog_name + " * --- * ";
+
+
+                temporary = temporary.prev_dog;
+            }
+            inviteList += temporary.dog_name + " * --- * ";
+            return inviteList;
+
+        }
     }
 }
-
